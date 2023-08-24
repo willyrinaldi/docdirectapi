@@ -1,0 +1,541 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This file is auto-generated using go-swagger annotations.",
+        "version": "1.0.0",
+        "title": "Rasio Keuangan API",
+        "contact": {
+            "name": "Your Name",
+            "email": "your@email.com"
+        }
+    },
+    "host": "localhost:8082",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/direct/v1/saham/fdr/rk/get-rasio-keuangan-data": {
+            "get": {
+                "summary": "Get Rasio Keuangan Data",
+                "description": "Get Rasio Keuangan Data based on provided parameters.",
+                "parameters": [{
+                        "name": "secCode",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "Emiten code"
+                    },
+                    {
+                        "name": "periode",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "Year of the data"
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "Quarter of the data"
+                    },
+                    {
+                        "name": "granularity",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "Granularity (annually/quarterly)"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResultIndexData"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/ErrorResponse"
+                    }
+                },
+                "tags": [
+                    "Rasio Keuangan"
+                ]
+            }
+        },
+        "/direct/v1/saham/fdr/ip/get-informasi-pasar-data": {
+            "get": {
+                "summary": "Get Informasi Pasar Data",
+                "description": "Get Informasi Pasar Data based on provided parameters.",
+                "parameters": [{
+                        "name": "secCode",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "Emiten code"
+                    },
+                    {
+                        "name": "periode",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "description": "Year of the data"
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "description": "Quarter of the data"
+                    },
+                    {
+                        "name": "granularity",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "description": "Granularity (annually/quarterly)"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResultIndexDataIinfPasar"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/ErrorResponse"
+                    }
+                },
+                "tags": [
+                    "Informasi Pasar"
+                ]
+            }
+        },
+        "/direct/v1/saham/lk/is/": {
+            "get": {
+                "summary": "Get Income Statement Data",
+                "description": "Get Rasio Keuangan Data based on provided parameters.",
+                "parameters": [{
+                        "name": "secCode",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "periode",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "granularity",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "tags": [
+                    "Income Statement"
+                ]
+            }
+        },
+        "/direct/v1/saham/dp/eq/": {
+            "get": {
+                "summary": "Get Data History",
+                "description": "Get Rasio Keuangan Data based on provided parameters.",
+                "parameters": [{
+                        "name": "secCode",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "granularity",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "startDate",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "endDate",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "changes": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "Date": {
+                                                "type": "string"
+                                            },
+                                            "Open": {
+                                                "type": "integer"
+                                            },
+                                            "High": {
+                                                "type": "integer"
+                                            },
+                                            "Low": {
+                                                "type": "integer"
+                                            },
+                                            "Close": {
+                                                "type": "integer"
+                                            },
+                                            "Vol": {
+                                                "type": "integer"
+                                            },
+                                            "Val": {
+                                                "type": "integer"
+                                            },
+                                            "Freq": {
+                                                "type": "integer"
+                                            },
+                                            "Change": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "bottom": {
+                                    "type": "object",
+                                    "properties": {
+                                        "LastUpdate": {
+                                            "type": "string"
+                                        },
+                                        "Highest": {
+                                            "type": "integer"
+                                        },
+                                        "Lowest": {
+                                            "type": "integer"
+                                        },
+                                        "Difference": {
+                                            "type": "integer"
+                                        },
+                                        "Average": {
+                                            "type": "number"
+                                        },
+                                        "Change": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": [{
+                                    "date": "2023-07-21",
+                                    "prev": 6864.189,
+                                    "high": 6880.802,
+                                    "low": 6837.646,
+                                    "close": 6880.802,
+                                    "volume": 16262882812,
+                                    "value": 8617503732103,
+                                    "freq": 1060985,
+                                    "change": 0.24202422165240495
+                                }],
+                                "lastUpdate": "2023-07-21",
+                                "highest": 6931.272,
+                                "lowest": 6578.756,
+                                "difference": 352.5159999999996,
+                                "average": 6725.262129032257,
+                                "change": 3.731814563003012
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "tags": [
+                    "Data History"
+                ]
+            }
+        },
+        "/direct/v1/saham/lk/bs/": {
+            "get": {
+                "summary": "Get Balance Sheet Data",
+                "description": "Get Rasio Keuangan Data based on provided parameters.",
+                "parameters": [{
+                        "name": "secCode",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "periode",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "granularity",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "tags": [
+                    "Balance Sheet Data"
+                ]
+            }
+        },
+        "/direct/v1/saham/dp/ix/": {
+            "get": {
+                "summary": "Get Index Data",
+                "description": "Get Rasio Keuangan Data based on provided parameters.",
+                "parameters": [{
+                        "name": "indexCode",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "granularity",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "startDate",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "format": "date"
+                    },
+                    {
+                        "name": "endDate",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "format": "date"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "tags": [
+                    "Index Data"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "ResultIndexData": {
+            "type": "object",
+            "properties": {
+                "period": {
+                    "type": "string"
+                },
+                "PBV": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "EVPerEbitTTM": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "EVPerEbitdaTTM": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "EVPerRevenueTTM": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "ps": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "pe": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "eps": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "BVPS": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "cashRatio": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "currentRatio": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "ATO": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "NPM": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "GPM": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "DAR": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "DER": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "OPM": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "revenuePerShares": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "roa": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "roe": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+        "ResultIndexDataIinfPasar": {
+            "type": "object",
+            "properties": {
+                "period": {
+                    "type": "string"
+                },
+                "listedShares": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "close": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "marketCap": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "peringkatKapitalisasiPasar": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "enterpriseValue": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        }
+    },
+    "responses": {
+        "ErrorResponse": {
+            "description": "Error response",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [{
+        "name": "Rasio Keuangan",
+        "description": "APIs for retrieving Rasio Keuangan data"
+    }]
+}
